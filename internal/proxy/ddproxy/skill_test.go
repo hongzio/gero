@@ -24,7 +24,7 @@ var skillEnvs = map[string]Env{
 func skill(t *testing.T, expose []string, def string) string {
 	t.Helper()
 	v := proxy.View{Isolation: "axis", Enabled: true, Envs: map[string]json.RawMessage{}, Tokens: map[string]string{}}
-	v.Exposure = store.Exposure{Isolation: "axis", Service: "datadog", Envs: expose, Default: def}
+	v.Exposure = store.Exposure{IsolationID: "axis", Service: "datadog", Envs: expose, Default: def}
 	for _, n := range expose {
 		b, _ := json.Marshal(skillEnvs[n])
 		v.Envs[n] = b
